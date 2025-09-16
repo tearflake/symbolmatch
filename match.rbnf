@@ -1,0 +1,11 @@
+<start> := (GRAMMAR <rule>+)
+
+<rule> := (RULE <ATOMIC> <expr>)
+
+<expr> := <ATOMIC>
+        | (GROUP <expr>)
+        | (ADD <expr>*)
+        | (MUL <expr>*)
+        | (STAR <expr>)
+        | (ATOM <expr>)
+

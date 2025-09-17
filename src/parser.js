@@ -72,7 +72,7 @@ var Parser = (
         let err;
         function parse (syntax, sexpr) {
             let sSexpr = SExpr.parse (sexpr);
-            if (sexpr.err) return sexpr;
+            if (sSexpr.err) return sSexpr;
 
             path = [];
             farthestPath = [];

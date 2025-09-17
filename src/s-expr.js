@@ -243,16 +243,11 @@ var SExpr = (
             }
             node = node[idx];
           }
-          if (node.err) {
-            return node;
-          }
-          else {
-            return {
-              err: "Syntax error",
-              found: (Array.isArray (node) ? "list" : node.value),
-              pos: {y: positions.get(node).line - 1, x: positions.get(node).col - 1}
-            };
-          }
+          return {
+            err: "Syntax error",
+            found: (Array.isArray (node) ? "list" : node.value),
+            pos: {y: positions.get(node).line - 1, x: positions.get(node).col - 1}
+          };
         }
         
         function makeNodeTree(ast) {

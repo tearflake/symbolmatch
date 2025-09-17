@@ -116,25 +116,14 @@ Grammar:
 
 ```
 (GRAMMAR
-    (RULE <start> <factor>)
+    (RULE <start> <calc>)
     
     (RULE
-        <sum>
+        <calc>
         (ADD
-            <product>
-            (MUL <product> "+" <sum>)))
-    
-    (RULE
-        <product>
-        (ADD
-            <factor>
-            (MUL <factor> "*" <product>)))
-    
-    (RULE
-        <factor>
-        (ADD
-            (ATOM <number>)
-            (GROUP <sum>)))
+            (GROUP (MUL "add" <calc> (STAR <calc>)))
+            (GROUP (MUL "mul" <calc> (STAR <calc>)))
+            (ATOM <number>)))
             
     (RULE <number> (MUL <digit> (STAR <digit>)))
     (RULE <digit> (ADD "1" "2" "3" "4" "5" "6" "7" "8" "9" "0")))
@@ -143,13 +132,13 @@ Grammar:
 Input S-expression:
 
 ```
-((2 + 3) * 4)
+(mul (add 2 3) 4)
 ```
 
 Result:
 
 ```
-[["2", "+", "3"], "*", "4"]
+["mul", ["add", "2", "3"], "4"]
 ```
 
 ### Example 3: error reporting
@@ -157,16 +146,16 @@ Result:
 Input S-expression:
 
 ```
-((2 + 3) * )
+(mul (add 2 (mul)) 4)
 ```
 
-This fails because the factor after `*` is missing. The error report returns:
+This fails because the numbers are missing. The error report returns:
 
 ```
-Error: unexpected end of input at path [0, 2]
+Error: missing list elements at path [1, 2]
 ```
 
-This path identifies the location inside the nested expression where the parser expected a factor.
+This path identifies the location inside the nested expression where the parser expected a number.
 
 ## 4. conclusion
 

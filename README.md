@@ -16,15 +16,18 @@ Symbolmatch is a parser combinator framework that operates on **S-expressions**.
 2. Review the examples in [Symbolmatch Playground](https://tearflake.github.io/symbolmatch/playground/) as a guide to build your own grammars.  
 3. Clone the repository.  
 4. Include `symbolmatch.js` in your project  
-5. Use the library as:  
 
-       let rules = Parser.parseRules ('(GRAMMAR (RULE <start> "Hello!"))');
-       if (!rules.err) {
-           let output = Parser.parse (rules, "Hello!");
-           if (!output.err) {
-               console.log (output);
-           }
-       }
+## javascript API  
+
+```
+let rules = Parser.parseRules ('(GRAMMAR (RULE <start> "Hello!"))');
+if (!rules.err) {
+    let output = Parser.parse (rules, "Hello!");
+    if (!output.err) {
+        console.log (output);
+    }
+}
+```
 
 ## Example
 
@@ -53,3 +56,4 @@ Symbolmatch is a parser combinator framework that operates on **S-expressions**.
 ## License
 
 MIT License. See [LICENSE](LICENSE) for details.
+

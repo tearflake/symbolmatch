@@ -77,6 +77,7 @@ var Parser = (
             path = [];
             farthestPath = [];
             err = undefined;
+            /*
             let ast = matchRule ("<start>", [sSexpr], 0, makeRules (syntax), false, 0);
             if (ast.err) {
                 if (err) {
@@ -88,7 +89,31 @@ var Parser = (
                 }
             }
             else {
-                return ast[0];
+                if (typeof sSexpr === "string") {
+                    return ast;
+                }
+                else {
+                    return ast[0];
+                }
+            }
+            */
+            let ast = dispatch ("<start>", [sSexpr], 0, makeRules (syntax), false, 0);
+            if (ast.err) {
+                if (err) {
+                    return {err: err};
+                }
+                else {
+                    let msg = SExpr.getPosition (sexpr, farthestPath);
+                    return {err: msg.err, found: msg.found, pos: msg.pos};
+                }
+            }
+            else {
+                if (typeof ast === "string") {
+                    return ast;
+                }
+                else {
+                    return ast[0];
+                }
             }
         }
 
@@ -172,7 +197,7 @@ var Parser = (
                 path = [...path, 0]
                 let res = dispatch (pattern[1], expr[idx], 0, rules, atomic, rec)
                 path.pop ();
-                if (!res.err && (Array.isArray (res) && res.length === expr[idx].length)) {
+                if (!res.err && (typeof res === typeof expr[idx] && res.length === expr[idx].length)) {
                     return [res];
                 }
             }
@@ -193,7 +218,8 @@ var Parser = (
                         }
                     }
                     
-                    return expr[idx];
+                    return [expr[idx]];
+                    //return expr[idx];
                 }
             }
 

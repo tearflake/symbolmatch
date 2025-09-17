@@ -12,10 +12,18 @@ Symbolmatch is a parser combinator framework that operates on **S-expressions**.
 
 ## Getting Started
 
-1. Clone the repository.  
-2. include `symbolmatch.js` in your project
-3. Review the [Symbolmatch Specification](https://tearflake.github.io/symbolmatch/docs/symbolmatch) for details of the grammar and semantics.  
-4. Review the examples in [Symbolmatch Playground](https://tearflake.github.io/symbolmatch/playground/) as a guide to build your own grammars.  
+1. Review the [Symbolmatch Specification](https://tearflake.github.io/symbolmatch/docs/symbolmatch) for details of the grammar and semantics.  
+2. Review the examples in [Symbolmatch Playground](https://tearflake.github.io/symbolmatch/playground/) as a guide to build your own grammars.  
+3. Clone the repository.  
+4. Include `symbolmatch.js` in your project  
+5. Use the library as:  
+       let rules = Parser.parseRules ('(GRAMMAR (RULE <start> "Hello!"))');
+       if (!rules.err) {
+           let output = Parser.parse (rules, "Hello!");
+           if (!output.err) {
+               console.log (output);
+           }
+       }
 
 ## Example
 

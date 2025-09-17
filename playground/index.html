@@ -388,9 +388,9 @@
         output1.value = "";
         document.getElementById("tm").innerHTML = "(compiling rules...)";
         
-        setTimeout (async function (){
+        setTimeout (function (){
             var tm = Date.now ();
-            var rules = await Parser.parseRules (rules1.getValue ());
+            var rules = Parser.parseRules (rules1.getValue ());
             if (rules.err) {
                 output1.value = "rules:\n" + rules.err + " at " + "(" + (rules.pos.y + 1) + ", " + (rules.pos.x + 1) + ")" + (rules.found ? ", found: " + rules.found : "");
                 document.getElementById("tm").innerHTML = "";
@@ -416,6 +416,15 @@
         
         //var rules = await Rewriter.compileFile ("../examples/fetch.sv");
         //var output = Rewriter.rewrite (rules, "(process (lmbd x x))");
+        /*
+        let rules = Parser.parseRules ('(GRAMMAR (RULE <start> "Hello!"))');
+        if (!rules.err) {
+            let output = Parser.parse (rules, "Hello!");
+            if (!output.err) {
+                console.log (output);
+            }
+        }
+        */
     }
 </script>
 

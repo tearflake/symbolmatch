@@ -104,7 +104,7 @@ var Parser = (
                 }
                 else {
                     let msg = SExpr.getPosition (sexpr, farthestPath);
-                    return {err: msg.err, found: msg.found, pos: msg.pos};
+                    return {err: msg.err, found: msg.found, pos: msg.pos, path: farthestPath};
                 }
             }
             else {

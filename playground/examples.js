@@ -2,32 +2,21 @@ examples = {
 "arith":
 `
 (GRAMMAR
-    (RULE <start> <factor>)
+    (RULE <start> <calc>)
     
     (RULE
-        <sum>
+        <calc>
         (ADD
-            (MUL <product> "+" <sum>)
-            <product>))
-    
-    (RULE
-        <product>
-        (ADD
-            (MUL <factor> "*" <product>)
-            <factor>))
-    
-    (RULE
-        <factor>
-        (ADD
-            (ATOM <number>)
-            (GROUP <sum>)))
+            (GROUP (MUL "add" <calc> (STAR <calc>)))
+            (GROUP (MUL "mul" <calc> (STAR <calc>)))
+            (ATOM <number>)))
             
     (RULE <number> (MUL <digit> (STAR <digit>)))
     (RULE <digit> (ADD "1" "2" "3" "4" "5" "6" "7" "8" "9" "0")))
 `,
 "arith-input":
 `
-((2 + 3) * 4)
+(mul (add 1 2 3) 4 5)
 `,
 
 "bootstrap": `

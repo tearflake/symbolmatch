@@ -35,22 +35,25 @@ if (!rules.err) {
 
 ```
 (GRAMMAR
-    (RULE <start> <factor>)
-    (RULE <sum> (ADD (MUL <product> "+" <sum>) <product>))
-    (RULE <product> (ADD (MUL <factor> "*" <product>) <factor>))
-    (RULE <factor> (ADD ATOMIC (GROUP <sum>))))
+    (RULE <start> <calc>)    
+    (RULE
+        <calc>
+        (ADD
+            (GROUP (MUL "add" <calc> (STAR <calc>)))
+            (GROUP (MUL "mul" <calc> (STAR <calc>)))
+            ATOMIC)))
 ```
 
 ### Input
 
 ```
-((2 + 3) * 4)
+(mul (add 2 3) 4)
 ```
 
 ### Output
 
 ```
-[["2", "+", "3"], "*", "4"]
+["mul" ["add" "2", "3"] "4"]
 ```
 
 ## License

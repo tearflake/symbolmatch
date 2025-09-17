@@ -383,10 +383,8 @@
 
 <script>
     async function process () {
-        //output1.value = Sexpr.stringify (run (Sexpr.parse(rules1.getValue ()), Sexpr.parse(input1.getValue ())));
-        
         output1.value = "";
-        document.getElementById("tm").innerHTML = "(compiling rules...)";
+        document.getElementById("tm").innerHTML = "(parsing rules...)";
         
         setTimeout (function (){
             var tm = Date.now ();
@@ -414,8 +412,6 @@
             output1.selectionEnd = 0;
         }, 0);
         
-        //var rules = await Rewriter.compileFile ("../examples/fetch.sv");
-        //var output = Rewriter.rewrite (rules, "(process (lmbd x x))");
         /*
         let rules = Parser.parseRules ('(GRAMMAR (RULE <start> "Hello!"))');
         if (!rules.err) {

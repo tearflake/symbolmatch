@@ -66,7 +66,8 @@ Symbolmatch can define its own grammar using Symbolmatch syntax. This process is
             (GROUP (MUL "MUL" (STAR <expr>)))
             (GROUP (MUL "STAR" <expr>))
             (GROUP (MUL "ATOM" <expr>))
-            ATOMIC)))
+            ATOMIC
+            ANY)))
 ```
 
 ### 2.2 informal semantics
@@ -83,6 +84,7 @@ The primitive combinators have the following meaning:
 - `ONE`: always succeeds.  
 - `ZERO`: always fails.  
 - `ATOMIC`: matches any S-expression atom.  
+- `ANY`: matches any S-expression.  
 
 Error reporting is structural: instead of a raw character index, Symbolmatch returns a **path of indexes into the S-expression tree** that led to the error. However, from this path, it is possible to get the actual line/column position of the error using the "S-expr" package that Symbolmatch is based on.  
 

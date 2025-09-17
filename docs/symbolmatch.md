@@ -66,8 +66,7 @@ Symbolmatch can define its own grammar using Symbolmatch syntax. This process is
             (GROUP (MUL "MUL" (STAR <expr>)))
             (GROUP (MUL "STAR" <expr>))
             (GROUP (MUL "ATOM" <expr>))
-            ATOMIC
-            ANY)))
+            ATOMIC)))
 ```
 
 ### 2.2 informal semantics

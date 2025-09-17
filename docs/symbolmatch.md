@@ -61,7 +61,7 @@ Symbolmatch can define its own grammar using Symbolmatch syntax. This process is
     (RULE
         <expr>
         (ADD
-            (GROUP (MUL "GROUP" (STAR <expr>)))
+            (GROUP (MUL "GROUP" <expr>))
             (GROUP (MUL "ADD" (STAR <expr>)))
             (GROUP (MUL "MUL" (STAR <expr>)))
             (GROUP (MUL "STAR" <expr>))

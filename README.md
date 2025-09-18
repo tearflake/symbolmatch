@@ -45,13 +45,13 @@ if (!rules.err) {
 ### Input
 
 ```
-(mul (add 2 3) 4)
+(mul (add 2 3 4) 5)
 ```
 
 ### Output
 
 ```
-["mul" ["add" "2", "3"] "4"]
+["mul" ["add" "2", "3" "4"] "5"]
 ```
 
 ## License

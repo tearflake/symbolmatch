@@ -77,26 +77,6 @@ var Parser = (
             path = [];
             farthestPath = [];
             err = undefined;
-            /*
-            let ast = matchRule ("<start>", [sSexpr], 0, makeRules (syntax), false, 0);
-            if (ast.err) {
-                if (err) {
-                    return {err: err};
-                }
-                else {
-                    let msg = SExpr.getPosition (sexpr, farthestPath);
-                    return {err: msg.err, found: msg.found, pos: msg.pos};
-                }
-            }
-            else {
-                if (typeof sSexpr === "string") {
-                    return ast;
-                }
-                else {
-                    return ast[0];
-                }
-            }
-            */
             let ast = dispatch ("<start>", [sSexpr], 0, makeRules (syntax), false, 0);
             if (ast.err) {
                 if (err) {
@@ -183,7 +163,6 @@ var Parser = (
         
         let matchRule = function (pattern, expr, idx, rules, atomic, rec) {
             let rbody = rules[pattern];
-            //let res = dispatch (rbody, [expr[idx]], 0, rules);
             let res = dispatch (rbody, expr, idx, rules, atomic, rec);
             if (!res.err) {
                 return res;
@@ -219,7 +198,6 @@ var Parser = (
                     }
                     
                     return [expr[idx]];
-                    //return expr[idx];
                 }
             }
 
@@ -231,13 +209,6 @@ var Parser = (
             let d = 0;
             
             for (let i = 1; i < pattern.length; i++) {
-                /*
-                if (expr.length <= i - 1 + d) {
-                    path[path.length - 1]++;
-                    return {err:true};
-                }
-                */
-                
                 path[path.length - 1] = idx + i - 1 + d;
                 
                 let el = dispatch (pattern[i], expr, idx + i - 1 + d, rules, atomic, rec);
@@ -250,9 +221,7 @@ var Parser = (
                 else {
                     if (Array.isArray (el)) {
                         res = [...res, ...el];
-                        //if (el.length > 0) {
-                            d += el.length - 1;
-                        //}
+                        d += el.length - 1;
                     }
                     else {
                         res = [...res, el];
@@ -260,7 +229,6 @@ var Parser = (
                 }
                 
                 if (expr.length <= i - 1 + d) {
-                    //path[path.length - 1]++;
                     return {err:true};
                 }
             }

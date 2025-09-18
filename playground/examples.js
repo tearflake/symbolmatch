@@ -72,10 +72,7 @@ examples = {
 
 (
     GRAMMAR
-    (RULE <start>
-        (ADD
-             <graph>
-             (GROUP (MUL "FILE" ATOMIC))))
+    (RULE <start> <graph>)
 
     (RULE
         <graph>
@@ -118,8 +115,7 @@ examples = {
 
 (
     GRAMMAR
-    (RULE <start>
-        <ruleset>)
+    (RULE <start> <ruleset>)
 
     (RULE <ruleset>
         (GROUP (MUL "REWRITE" <element> (STAR <element>))))

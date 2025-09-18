@@ -6,5 +6,5 @@
     - initial commit
 
 - v0.1.x
-    - reducing to minimal set of combiators
+    - reducing to minimal set of combinators
     - atomic values construction

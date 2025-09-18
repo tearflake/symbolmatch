@@ -5,7 +5,7 @@ Symbolmatch is a parser combinator framework that operates on **S-expressions**.
 ## Features
 
 - **Self-hosting grammar**: Symbolmatch defines its own grammar using Symbolmatch itself.  
-- **Minimal combinators**: `GROUP`, `ADD`, `MUL`, `STAR`, `ATOM` provide expressive power with simplicity. The reflect Kleene algebra with PEG semantics, namely: expression grouping, deterministic ordered choice, sequence operator, repetitions, and sub-atomic definitions.  
+- **Minimal combinators**: `GROUP`, `ADD`, `MUL`, `STAR`, `ATOM` provide expressive power with simplicity. They reflect Kleene algebra with PEG semantics, namely: expression grouping, deterministic ordered choice, sequence operator, repetitions, and sub-atomic definitions.  
 - **Structural error reporting**: along with character offsets, Symbolmatch reports errors as index paths into the S-expression tree.  
 
 ## Getting Started
@@ -13,7 +13,7 @@ Symbolmatch is a parser combinator framework that operates on **S-expressions**.
 1. Review the [Symbolmatch Specification](https://tearflake.github.io/symbolmatch/docs/symbolmatch) for details of the grammar and semantics.  
 2. Review the examples in [Symbolmatch Playground](https://tearflake.github.io/symbolmatch/playground/) as a guide to build your own grammars.  
 3. Clone the repository.  
-4. Refer to `symbolmatch.js` in your javascript project  
+4. Refer to `./symbolmatch.js` in your javascript project  
 
 ## Javascript API  
 

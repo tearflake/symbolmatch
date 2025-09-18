@@ -12,6 +12,7 @@ examples = {
             (ATOM <number>)))
             
     (RULE <number> (MUL <digit> (STAR <digit>)))
+    
     (RULE <digit> (ADD "1" "2" "3" "4" "5" "6" "7" "8" "9" "0")))
 `,
 "arith-input":
@@ -55,6 +56,7 @@ examples = {
             (ATOM <number>)))
             
     (RULE <number> (MUL <digit> (STAR <digit>)))
+    
     (RULE <digit> (ADD "1" "2" "3" "4" "5" "6" "7" "8" "9" "0")))
 `,
 

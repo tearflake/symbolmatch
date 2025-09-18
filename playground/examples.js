@@ -45,23 +45,17 @@ examples = {
 `,
 "bootstrap-input": `
 (GRAMMAR
+    (RULE <start> <calc>)
+    
     (RULE
-        <start>
-        (GROUP (MUL "GRAMMAR" <rule> (STAR <rule>))))
-
-    (RULE
-        <rule>
-        (GROUP (MUL "RULE" ATOMIC <expr>)))
-
-    (RULE
-        <expr>
+        <calc>
         (ADD
-            (GROUP (MUL "GROUP" <expr>))
-            (GROUP (MUL "ADD" (STAR <expr>)))
-            (GROUP (MUL "MUL" (STAR <expr>)))
-            (GROUP (MUL "STAR" <expr>))
-            (GROUP (MUL "ATOM" <expr>))
-            ATOMIC)))
+            (GROUP (MUL "add" <calc> (STAR <calc>)))
+            (GROUP (MUL "mul" <calc> (STAR <calc>)))
+            (ATOM <number>)))
+            
+    (RULE <number> (MUL <digit> (STAR <digit>)))
+    (RULE <digit> (ADD "1" "2" "3" "4" "5" "6" "7" "8" "9" "0")))
 `,
 
 "prose":

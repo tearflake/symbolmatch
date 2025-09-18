@@ -15,18 +15,6 @@ Symbolmatch is a parser combinator framework that operates on **S-expressions**.
 3. Clone the repository.  
 4. Refer to `./symbolmatch.js` in your javascript project  
 
-## Javascript API  
-
-```
-let rules = Parser.parseRules ('(GRAMMAR (RULE <start> "Hello!"))');
-if (!rules.err) {
-    let output = Parser.parse (rules, "Hello!");
-    if (!output.err) {
-        console.log (output);
-    }
-}
-```
-
 ## Example
 
 ### Grammar
@@ -52,6 +40,18 @@ if (!rules.err) {
 
 ```
 ["mul" ["add" "2", "3" "4"] "5"]
+```
+
+## Javascript API  
+
+```
+let rules = Parser.parseRules ('(GRAMMAR (RULE <start> "Hello!"))');
+if (!rules.err) {
+    let output = Parser.parse (rules, "Hello!");
+    if (!output.err) {
+        console.log (output);
+    }
+}
 ```
 
 ## License

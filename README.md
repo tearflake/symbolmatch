@@ -5,10 +5,8 @@ Symbolmatch is a parser combinator framework that operates on **S-expressions**.
 ## Features
 
 - **Self-hosting grammar**: Symbolmatch defines its own grammar using Symbolmatch itself.  
-- **Minimal combinators**: `GROUP`, `ADD`, `MUL`, `STAR`, `ATOM` provide expressive power with simplicity.  
-- **Kleene algebra with PEG semantics**: expression grouping, deterministic ordered choice, sequence operator, repetitions, and sub-atomic definitions.  
-- **Structural error reporting**: instead of character offsets, Symbolmatch reports errors as index paths into the S-expression tree.  
-- **Examples included**: arithmetic parsing, identifiers, and error handling.
+- **Minimal combinators**: `GROUP`, `ADD`, `MUL`, `STAR`, `ATOM` provide expressive power with simplicity. The reflect Kleene algebra with PEG semantics, namely: expression grouping, deterministic ordered choice, sequence operator, repetitions, and sub-atomic definitions.  
+- **Structural error reporting**: along with character offsets, Symbolmatch reports errors as index paths into the S-expression tree.  
 
 ## Getting Started
 

@@ -36,7 +36,7 @@ In computer science, the syntax of a computer language is the set of rules that 
 
 The above grammar defines the syntax of Symbolmatch. To interpret these grammar rules, we use special symbols: `<...>` for noting identifiers, `... := ...` for expressing assignment, `...+` for one or more occurrences, `...*` for zero or more occurrences, `...?` for optional appearance, and `... | ...` for alternation between expressions. All other symbols are considered as parts of the Symbolmatch grammar.
 
-Atoms may be enclosed between a pair of `'` characters if we want to include special characters used in the grammar. Strings are enclosed between `"` characters. Multiline atoms and strings are enclosed between an odd number of `'` or `"` characters. 
+Atoms may be enclosed between a pair of `'` characters if we want to include special characters used in the grammar. Strings are enclosed between a pair of `"` characters. Multiline atoms and strings are enclosed between an odd number of `'` or `"` characters. 
  
 In addition to the exposed grammar, user comments have no meaning to the system, but may be descriptive to readers, and may be placed wherever a whitespace is expected. Single line comments begin with `//` and span to the end of line. Multiline comments begin with `/*` and end with `*/`.
 
@@ -75,7 +75,7 @@ Symbolmatch grammars are interpreted with PEG semantics. Each rule matches deter
 
 The primitive combinators have the following meaning:
 
-- `GROUP`: enforces grouping of an expression in S-expression list.  
+- `GROUP`: enforces grouping of the expression list within parenthesis.  
 - `MUL`: sequence; all subexpressions must match in order.  
 - `ADD`: ordered choice; tries alternatives in order, takes the first match.  
 - `STAR`: zero-or-more repetition of the expression.  

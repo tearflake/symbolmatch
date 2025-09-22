@@ -1,4 +1,4 @@
-# Symbolmatch
+# Symbolmatch 0.1.4
 
 Symbolmatch is a parser combinator framework that operates on **S-expressions**. It defines grammars in the same notation that it parses, making it **self-describing and bootstrappable**.  
 

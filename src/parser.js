@@ -143,7 +143,12 @@ var Parser = (
                         }
                     }
                     else if (pattern === "ANY") {
-                        return ret (expr[idx], atomic);
+                        if (Array.isArray (expr[idx])) {
+                            return ret ([expr[idx]], atomic);
+                        }
+                        else {
+                            return ret (expr[idx], atomic);
+                        }
                     }
                     else if (rules[pattern]){
                         return ret (matchRule (pattern, expr, idx, rules, atomic, rec + 1), atomic);

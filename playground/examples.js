@@ -86,7 +86,7 @@ examples = {
                         (GROUP (MUL "INSTR" <instruction> (STAR <instruction>)))
                         ONE)
                     (GROUP (MUL "TARGET" ATOMIC))))
-            (GROUP (MUL "COMPUTE" ATOMIC <graph>))))
+            (GROUP (MUL "COMPUTE" (GROUP (MUL "NAME" ATOMIC)) <graph>))))
 
     (RULE
         <instruction>

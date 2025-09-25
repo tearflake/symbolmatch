@@ -1,4 +1,4 @@
-# Symbolmatch 0.1.4
+# Symbolmatch 0.3.0
 
 Symbolmatch is a parser combinator framework that operates on **S-expressions**. It defines grammars in the same notation that it parses, making it **self-describing and bootstrappable**.  
 
@@ -45,7 +45,7 @@ Symbolmatch is a parser combinator framework that operates on **S-expressions**.
 ## Javascript API  
 
 ```
-let rules = Parser.parseRules ('(GRAMMAR (RULE <start> "Hello!"))');
+let rules = Parser.parseGrammar ('(GRAMMAR (RULE <start> "Hello!"))');
 if (!rules.err) {
     let output = Parser.parse (rules, "Hello!");
     if (!output.err) {

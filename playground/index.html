@@ -388,7 +388,7 @@
         
         setTimeout (function (){
             var tm = Date.now ();
-            var rules = Parser.parseRules (rules1.getValue ());
+            var rules = Parser.parseGrammar (rules1.getValue ());
             if (rules.err) {
                 output1.value = "rules:\n" + rules.err + " at " + "(" + (rules.pos.y + 1) + ", " + (rules.pos.x + 1) + ")" + (rules.found ? ", found: " + rules.found : "");
                 document.getElementById("tm").innerHTML = "";

@@ -85,7 +85,7 @@ The primitive combinators have the following meaning:
 - `ATOMIC`: matches any S-expression atom.  
 - `ANY`: matches any S-expression.  
 
-Error reporting is structural: instead of a raw character index, Symbolmatch returns a **path of indexes into the S-expression tree** that led to the error. However, from this path, it is possible to get the actual line/column position of the error using the "S-expr" package that Symbolmatch is based on.  
+Error reporting is structural: instead of a raw character index, Symbolmatch returns the **furthest path of indexes into the S-expression tree** that led to the error. However, from this path, it is possible to get the actual line/column position of the error using the "S-expr" package that Symbolmatch is based on.  
 
 ## 3. examples
 

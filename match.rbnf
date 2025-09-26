@@ -2,7 +2,8 @@
 
 <rule> := (RULE <ATOMIC> <expr>)
 
-<expr> := <ATOMIC>
+<expr> := ()
+        | <ATOMIC>
         | (GROUP <expr>)
         | (ADD <expr>*)
         | (MUL <expr>*)

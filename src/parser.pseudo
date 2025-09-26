@@ -9,13 +9,14 @@ SExpr       : Atom | [SExpr]             // symbolic expression (list form)
 Path        : [Int]                      // index path inside S-expression
 Grammar     : Map<Atom, Expr>            // grammar as collection of rules
 Expr        :                            // parsing expression AST
+      []                                 // empty list
     | "ATOMIC"                           // matches any atom
-    | "ANY"                              // matches any SExpr
+    | "ANY"                              // matches any S-expression
     | Array["GROUP", Expr]               // group with parentheses
     | Array["MUL", ...Expr]              // sequence of subexpressions
     | Array["ADD", ...Expr]              // ordered choice
     | Array["STAR", Expr]                // zero-or-more repetition
-    | Array["ATOM", Expr]                // match noTrackPath token
+    | Array["ATOM", Expr]                // matches subatomic expression
     | "ONE"                              // always succeeds
     | "ZERO"                             // always fails
 Result      : SExpr | Error
@@ -80,12 +81,6 @@ function match(expr: SExpr, idx: Int, pattern: Expr, grammar: Grammar, farPath: 
         else
             return 1, farPath, true
 
-    else if type == "ONE"
-        return 0, farPath, true
-
-    else if type == "ZERO"
-        return 0, farPath, false
-
     else if type == "ADD"
         for i = 1 to pattern.length - 1
             length, farPath, ok = match(expr, idx, pattern[i], grammar, farPath, curPath, noTrackPath)
@@ -123,6 +118,12 @@ function match(expr: SExpr, idx: Int, pattern: Expr, grammar: Grammar, farPath: 
 
         else
             return 0, farPath, false
+
+    else if type == "ONE"
+        return 0, farPath, true
+
+    else if type == "ZERO"
+        return 0, farPath, false
 
 // Comparing arrays
 

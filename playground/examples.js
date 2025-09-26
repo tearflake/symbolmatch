@@ -37,12 +37,13 @@ examples = {
     (RULE
         <expr>
         (ADD
+            ()
+            ATOMIC
             (GROUP (MUL "GROUP" <expr>))
             (GROUP (MUL "ADD" (STAR <expr>)))
             (GROUP (MUL "MUL" (STAR <expr>)))
             (GROUP (MUL "STAR" <expr>))
-            (GROUP (MUL "ATOM" <expr>))
-            ATOMIC)))
+            (GROUP (MUL "ATOM" <expr>)))))
 `,
 "bootstrap-input": `
 (GRAMMAR
@@ -113,10 +114,12 @@ examples = {
     GRAMMAR
     (RULE <start> <ruleset>)
 
-    (RULE <ruleset>
+    (RULE
+        <ruleset>
         (GROUP (MUL "REWRITE" <element> (STAR <element>))))
 
-    (RULE <element>
+    (RULE
+        <element>
         (ADD
             (GROUP (MUL "RULE" (GROUP (MUL "READ" ANY)) (GROUP (MUL "WRITE" ANY))))
             (GROUP (MUL "COMPUTE" ATOMIC <ruleset>)))))

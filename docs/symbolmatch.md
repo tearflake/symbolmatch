@@ -61,12 +61,13 @@ Symbolmatch can define its own grammar using Symbolmatch syntax. This process is
     (RULE
         <expr>
         (ADD
+            ()
+            ATOMIC
             (GROUP (MUL "GROUP" <expr>))
             (GROUP (MUL "ADD" (STAR <expr>)))
             (GROUP (MUL "MUL" (STAR <expr>)))
             (GROUP (MUL "STAR" <expr>))
-            (GROUP (MUL "ATOM" <expr>))
-            ATOMIC)))
+            (GROUP (MUL "ATOM" <expr>)))))
 ```
 
 ### 2.2 informal semantics

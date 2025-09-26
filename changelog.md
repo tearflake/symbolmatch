@@ -8,3 +8,7 @@
 - v0.1.x
     - reducing to minimal set of combinators
     - atomic values construction
+
+-v0.3.x
+    - refactoring
+

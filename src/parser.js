@@ -27,13 +27,13 @@ var Parser = (
                 (RULE
                     <expr>
                     (ADD
+                        ()
+                        ATOMIC
                         (GROUP (MUL "GROUP" <expr>))
                         (GROUP (MUL "ADD" (STAR <expr>)))
                         (GROUP (MUL "MUL" (STAR <expr>)))
                         (GROUP (MUL "STAR" <expr>))
-                        (GROUP (MUL "ATOM" <expr>))
-                        ATOMIC
-                        ())))
+                        (GROUP (MUL "ATOM" <expr>)))))
             `
 
             let sSyntax = SExpr.parse (syntax);
@@ -122,12 +122,6 @@ var Parser = (
                     return [1, farPath, true];
                 }
             }
-            else if (type === "ONE") {
-                return [0, farPath, true];
-            }
-            else if (type === "ZERO") {
-                return [0, farPath, false];
-            }
             else if (type === "ADD") {
                 for (let i = 1; i < pattern.length; i++) {
                     let [length, farPath1, ok] = match (expr, idx, pattern[i], grammar, farPath, curPath, noTrackPath);
@@ -176,6 +170,12 @@ var Parser = (
                 else {
                     return [0, farPath, false];
                 }
+            }
+            else if (type === "ONE") {
+                return [0, farPath, true];
+            }
+            else if (type === "ZERO") {
+                return [0, farPath, false];
             }
             
             return [0, farPath, false];

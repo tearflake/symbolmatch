@@ -128,6 +128,56 @@ examples = {
 `
 (REWRITE
     (RULE (READ "Hello computer!") (WRITE "Hello world!")))
+`,
+
+"symbol":
+`
+/*
+    symbol
+*/
+
+(GRAMMAR
+    (RULE <start> <expr>)
+
+    (RULE
+        <expr>
+        (ADD
+            <apply>
+            (GROUP (MUL "SEXPR" ANY))))
+
+    (RULE
+        <apply>
+        (GROUP (MUL "APPLY" <frame> <expr>)))
+
+    (RULE
+        <frame>
+        (ADD
+            "symbolmatch"
+            "symbolverse"
+            "symbolprose"
+            (GROUP
+                (MUL
+                    "FRAME"
+                    (GROUP (MUL "SYNTAX" <apply>))
+                    (GROUP (MUL "SEMANTICS" <apply>)))))))
+`,
+"symbol-input":
+`
+(APPLY
+    (FRAME
+        (SYNTAX
+            (APPLY
+                symbolmatch
+                (SEXPR
+                    (GRAMMAR (RULE <start> "Hello computer!")))))
+                
+        (SEMANTICS
+            (APPLY
+                symbolverse
+                (SEXPR
+                    (REWRITE (RULE (READ "Hello computer!") (WRITE "Hello world!")))))))
+                
+    (SEXPR "Hello computer!"))
 `
 }
 

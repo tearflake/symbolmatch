@@ -219,8 +219,8 @@ var Parser = (
         }
 
         return {
-            parseGrammar: parseGrammar
-            parse: parse,
+            parseGrammar: parseGrammar,
+            parse: parse
         }
     }) ()
 );

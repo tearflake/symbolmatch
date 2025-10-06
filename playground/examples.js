@@ -94,11 +94,12 @@ examples = {
     (NORM <elements> (<element> ()))
     
     (FLAT <element> ("EDGE" ("SOURCE" IDENTIFIER) <instr> ("TARGET" IDENTIFIER)))
+    (FLAT <element> ("EDGE" ("SOURCE" IDENTIFIER) ("TARGET" IDENTIFIER)))
     (FLAT <element> ("COMPUTE" ("NAME" IDENTIFIER) <graph>))
     
     (NORM <instr> ("INSTR" <instructions>))
     
-    (NORM <instructions> (<instructions> <instruction>))
+    (NORM <instructions> (<instruction> <instructions>))
     (NORM <instructions> (<instruction> ()))
     
     (FLAT <instruction> ("TEST" ANY ANY))

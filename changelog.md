@@ -15,6 +15,6 @@
 ## Oct, 2025.
 
 -v0.5.x
-    - entirely new parser
-    - CFG-like rules for PEG parser
+    - entirely new parser  
+    - CFG-like rules for PEG parser  
 

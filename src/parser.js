@@ -134,7 +134,7 @@ var Parser = (
             return [farPath, false];
         }
         
-        compareArr = function (arr1, arr2) {
+        let compareArr = function (arr1, arr2) {
             for (var i = 0; i < arr1.length; i++) {
                 if (i < arr2.length) {
                     if (arr1[i] < arr2[i]) {

@@ -1,6 +1,6 @@
 # symbolmatch changelog
 
-## Sep, 2024.
+## Sep, 2025.
 
 - v0.0.x
     - initial commit
@@ -12,7 +12,7 @@
 - v0.3.x
     - refactoring
 
-## Oct, 2024.
+## Oct, 2025.
 
 -v0.5.x
     - entirely new parser

@@ -1,6 +1,6 @@
 # symbolmatch changelog
 
-## Sep, 2025.
+## Sep, 2024.
 
 - v0.0.x
     - initial commit
@@ -9,6 +9,12 @@
     - reducing to minimal set of combinators
     - atomic values construction
 
--v0.3.x
+- v0.3.x
     - refactoring
+
+## Oct, 2024.
+
+-v0.5.x
+    - entirely new parser
+    - CFG-like rules for PEG parser
 

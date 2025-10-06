@@ -1,19 +1,33 @@
 examples = {
 "arith":
 `
-(GRAMMAR
-    (RULE <start> <calc>)
+/*
+    arithmetic grammar
+*/
+
+(RULES
+    (FLAT <start> <calc>)
     
-    (RULE
-        <calc>
-        (ADD
-            (GROUP (MUL "add" <calc> (STAR <calc>)))
-            (GROUP (MUL "mul" <calc> (STAR <calc>)))
-            (ATOM <number>)))
-            
-    (RULE <number> (MUL <digit> (STAR <digit>)))
+    (NORM <calc> ("add" <elems>))
+    (NORM <calc> ("mul" <elems>))
+    (NORM <calc> <digits>)
     
-    (RULE <digit> (ADD "1" "2" "3" "4" "5" "6" "7" "8" "9" "0")))
+    (NORM <elems> (<calc> <elems>))
+    (NORM <elems> ())
+    
+    (ATOM <digits> (<digit> <digits>))
+    (ATOM <digits> (<digit> ()))
+    
+    (ATOM <digit> "1")
+    (ATOM <digit> "2")
+    (ATOM <digit> "3")
+    (ATOM <digit> "4")
+    (ATOM <digit> "5")
+    (ATOM <digit> "6")
+    (ATOM <digit> "7")
+    (ATOM <digit> "8")
+    (ATOM <digit> "9")
+    (ATOM <digit> "0"))
 `,
 "arith-input":
 `
@@ -22,43 +36,47 @@ examples = {
 
 "bootstrap": `
 /*
-    Symbolmatch bootstrapped
+    symbolmatch bootstrapped
 */
 
-(GRAMMAR
-    (RULE
-        <start>
-        (GROUP (MUL "GRAMMAR" <rule> (STAR <rule>))))
+(RULES
+    (NORM <start> ("RULES" <rules>))
 
-    (RULE
-        <rule>
-        (GROUP (MUL "RULE" ATOMIC <expr>)))
+    (NORM <rules> (<rule> <rules>))
+    (NORM <rules> (<rule> ()))
 
-    (RULE
-        <expr>
-        (ADD
-            ()
-            ATOMIC
-            (GROUP (MUL "GROUP" <expr>))
-            (GROUP (MUL "ADD" (STAR <expr>)))
-            (GROUP (MUL "MUL" (STAR <expr>)))
-            (GROUP (MUL "STAR" <expr>))
-            (GROUP (MUL "ATOM" <expr>)))))
+    (FLAT <rule> ("FLAT" IDENTIFIER ANY))
+    (FLAT <rule> ("NORM" IDENTIFIER ANY))
+    (FLAT <rule> ("ATOM" IDENTIFIER ANY)))
 `,
 "bootstrap-input": `
-(GRAMMAR
-    (RULE <start> <calc>)
+/*
+    arithmetic grammar
+*/
+
+(RULES
+    (FLAT <start> <calc>)
     
-    (RULE
-        <calc>
-        (ADD
-            (GROUP (MUL "add" <calc> (STAR <calc>)))
-            (GROUP (MUL "mul" <calc> (STAR <calc>)))
-            (ATOM <number>)))
+    (NORM <calc> ("add" <elems>))
+    (NORM <calc> ("mul" <elems>))
+    (NORM <calc> <digits>)
             
-    (RULE <number> (MUL <digit> (STAR <digit>)))
+    (NORM <elems> (<calc> <elems>))
+    (NORM <elems> ())
+
+    (ATOM <digits> (<digit> <digits>))
+    (ATOM <digits> (<digit> ()))
     
-    (RULE <digit> (ADD "1" "2" "3" "4" "5" "6" "7" "8" "9" "0")))
+    (ATOM <digit> "1")
+    (ATOM <digit> "2")
+    (ATOM <digit> "3")
+    (ATOM <digit> "4")
+    (ATOM <digit> "5")
+    (ATOM <digit> "6")
+    (ATOM <digit> "7")
+    (ATOM <digit> "8")
+    (ATOM <digit> "9")
+    (ATOM <digit> "0"))
 `,
 
 "prose":
@@ -67,33 +85,24 @@ examples = {
     symbolprose
 */
 
-(
-    GRAMMAR
-    (RULE <start> <graph>)
+(RULES
+    (FLAT <start> <graph>)
 
-    (RULE
-        <graph>
-        (GROUP (MUL "GRAPH" <element> (STAR <element>))))
-
-    (RULE
-        <element>
-        (ADD
-            (
-                GROUP
-                (MUL
-                    "EDGE"
-                    (GROUP (MUL "SOURCE" ATOMIC))
-                    (ADD
-                        (GROUP (MUL "INSTR" <instruction> (STAR <instruction>)))
-                        ONE)
-                    (GROUP (MUL "TARGET" ATOMIC))))
-            (GROUP (MUL "COMPUTE" (GROUP (MUL "NAME" ATOMIC)) <graph>))))
-
-    (RULE
-        <instruction>
-        (ADD
-            (GROUP (MUL "TEST" ANY ANY))
-            (GROUP (MUL "ASGN" ATOMIC ANY)))))
+    (NORM <graph> ("GRAPH" <elements>))
+    
+    (NORM <elements> (<element> <elements>))
+    (NORM <elements> (<element> ()))
+    
+    (FLAT <element> ("EDGE" ("SOURCE" IDENTIFIER) <instr> ("TARGET" IDENTIFIER)))
+    (FLAT <element> ("COMPUTE" ("NAME" IDENTIFIER) <graph>))
+    
+    (NORM <instr> ("INSTR" <instructions>))
+    
+    (NORM <instructions> (<instructions> <instruction>))
+    (NORM <instructions> (<instruction> ()))
+    
+    (FLAT <instruction> ("TEST" ANY ANY))
+    (FLAT <instruction> ("ASGN" IDENTIFIER ANY)))
 `,
 "prose-input":
 `
@@ -110,19 +119,16 @@ examples = {
     symbolverse
 */
 
-(
-    GRAMMAR
-    (RULE <start> <ruleset>)
+(RULES
+    (FLAT <start> <ruleset>)
 
-    (RULE
-        <ruleset>
-        (GROUP (MUL "REWRITE" <element> (STAR <element>))))
+    (NORM <ruleset> ("REWRITE" <elements>))
 
-    (RULE
-        <element>
-        (ADD
-            (GROUP (MUL "RULE" (GROUP (MUL "READ" ANY)) (GROUP (MUL "WRITE" ANY))))
-            (GROUP (MUL "COMPUTE" ATOMIC <ruleset>)))))
+    (NORM <elements> (<elements> <element>))
+    (NORM <elements> (<element> ()))
+
+    (FLAT <element> ("RULE" ("READ" ANY) ("WRITE" ANY)))
+    (FLAT <element> ("COMPUTE" IDENTIFIER <ruleset>)))
 `,
 "verse-input":
 `
@@ -133,33 +139,21 @@ examples = {
 "symbol":
 `
 /*
-    symbol
+    symp
 */
 
-(GRAMMAR
-    (RULE <start> <expr>)
+(RULES
+    (FLAT <start> <expr>)
 
-    (RULE
-        <expr>
-        (ADD
-            <apply>
-            (GROUP (MUL "SEXPR" ANY))))
+    (FLAT <expr> <apply>)
+    (FLAT <expr> ("SEXPR" ANY))
 
-    (RULE
-        <apply>
-        (GROUP (MUL "APPLY" <frame> <expr>)))
+    (FLAT <apply> ("APPLY" <frame> <expr>))
 
-    (RULE
-        <frame>
-        (ADD
-            "symbolmatch"
-            "symbolverse"
-            "symbolprose"
-            (GROUP
-                (MUL
-                    "FRAME"
-                    (GROUP (MUL "SYNTAX" <apply>))
-                    (GROUP (MUL "SEMANTICS" <apply>)))))))
+    (FLAT <frame> "symbolmatch")
+    (FLAT <frame> "symbolverse")
+    (FLAT <frame> "symbolprose")
+    (FLAT <frame> ("FRAME" ("SYNTAX" <apply>) ("SEMANTICS" <apply>))))
 `,
 "symbol-input":
 `
@@ -169,7 +163,7 @@ examples = {
             (APPLY
                 symbolmatch
                 (SEXPR
-                    (GRAMMAR (RULE <start> "Hello computer!")))))
+                    (RULES (FLAT <start> ATOMIC)))))
                 
         (SEMANTICS
             (APPLY

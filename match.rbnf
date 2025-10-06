@@ -1,12 +1,6 @@
-<start> := (GRAMMAR <rule>+)
+<start> := (RULES <rule>+)
 
-<rule> := (RULE <ATOMIC> <expr>)
-
-<expr> := ()
-        | <ATOMIC>
-        | (GROUP <expr>)
-        | (ADD <expr>*)
-        | (MUL <expr>*)
-        | (STAR <expr>)
-        | (ATOM <expr>)
+<rule> := (FLAT <IDENTIFIER> <S-EXPRESSION>)
+        | (NORM <IDENTIFIER> <S-EXPRESSION>)
+        | (ATOM <IDENTIFIER> <S-EXPRESSION>)
 
